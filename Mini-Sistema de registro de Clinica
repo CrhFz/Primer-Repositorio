@@ -1,0 +1,370 @@
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct paciente
+{
+	char nombre[100];
+	long cedula;
+	char avenida[100];
+	int numero;
+	char municipio[100];
+	char ciudad[100];
+	char estado[100];
+	char telefono[20];
+	int edad;
+	char sex;	
+} pacientes[100];
+
+int llenado();
+void menu_1(int);
+void menu_2(int);
+void menu_3(int);
+void menu_4(int);
+void menu_5(int);
+void menu_6(int);
+void menu_7(int);
+void menu_8(int);
+void menu_9(int);
+void impresion(int);
+
+
+int main()
+{
+	int cant_reg, elec2, elec3;
+	
+	cant_reg=llenado();
+	do
+	{
+		system("color 0b");
+		printf("Desea Saber algo del Menu?\n\n\t(Si=1 No=0)\n\t    ");
+		scanf("%d", &elec2);
+		system("cls");
+		if (elec2==1)
+		{
+			printf("1- Pacientes que Residen en el Estado Carabobo Municipio San Diego\n");
+			printf("2- Porcentage de Pacientes que Residen en el Estado Aragua\n");
+			printf("3- Nombre y Telefono de Pacientes del Municipio NaguaNagua\n");
+			printf("4- Direccion de Paciente Rosa Virgina Casadiego\n");
+			printf("5- Pacientes Mayores de 50 años que Residen En el Estado Carabobo\n");
+			printf("6- Nombre, Direccion y Telefono de Pacientes de Sexo Femenino\n");
+			printf("7- Porcentaje de Pacientes Mayores de 60 años Residenciados en Valencia\n");
+			printf("8- Nombre de Pacientes Residenciados en la Av. Bolivar\n");
+			printf("9- Nombre y Telefono de Pacientes Menores de Edad, de Sexo Masculino\n   residenciados en Maracay\n");
+			printf("\nIngrese Su eleccion: \n");
+			scanf("%d", &elec3);
+			system("cls");
+	
+			switch (elec3)
+			{
+				case 1: 
+					menu_1(cant_reg);
+					elec3=0;
+					break;
+				              
+				case 2:
+					menu_2(cant_reg);
+					elec3=0;
+					break;
+				
+				case 3:
+					menu_3(cant_reg);
+					elec3=0;
+					break;
+				
+				case 4:
+					menu_4(cant_reg);
+					elec3=0;
+					break;
+					
+				case 5:
+					menu_5(cant_reg);
+					elec3=0;
+					break;	
+					
+				case 6:
+					menu_6(cant_reg);
+					elec3;
+					break;
+				
+				case 7:
+					menu_7(cant_reg);
+					elec3;
+					break;
+				
+				case 8:
+					menu_8(cant_reg);
+					elec3;
+					break;
+					
+				case 9:
+					menu_9(cant_reg);
+					elec3;
+					break;					
+				
+			}
+		}
+	}while (elec2!=0);
+	
+	
+	impresion(cant_reg);
+	
+	getch();
+	return 0;
+}
+
+int llenado()
+{
+	int i=0, elec1, reg_rea=0;
+	do
+	{
+		system("color 30");
+		
+		printf("Desea Registrar Algun Paciente?\n\n\t(Si=1 No=0)\n\t     ");
+		scanf("\n\t%d", &elec1);
+		system("cls");
+		if(elec1==1)
+		{	
+			printf("%i. Digite Nombre Completo del Paciente: ", i+1);
+			fflush(stdin);
+			gets(pacientes[i].nombre);
+			
+			printf("%i. Digite Cedula del Paciente: ", i+1);
+			scanf("%ld", &pacientes[i].cedula);
+					
+			printf("%i. Digite Avenida donde Vive: ", i+1);
+			fflush(stdin);
+			gets(pacientes[i].avenida);
+			
+			printf("%i. Digite Numero. donde Vive: ", i+1);
+			scanf("%d", &pacientes[i].numero);
+			
+			printf("%i. Digite Municipio donde Vive: ", i+1);
+			fflush(stdin);
+			gets(pacientes[i].municipio);
+			
+			printf("%i. Digite Ciudad donde Vive: ", i+1);
+			fflush(stdin);
+			gets(pacientes[i].ciudad);
+			
+			printf("%i. Digite Estado donde Vive: ", i+1);
+			fflush(stdin);
+			gets(pacientes[i].estado);
+			
+			printf("%i. Digite Telefono del Paciente: ", i+1);
+			fflush(stdin);
+			gets(pacientes[i].telefono);
+			
+			printf("%i. Digite Edad del Paciente: ", i+1);
+			scanf("%d", &pacientes[i].edad);
+			
+			printf("%i. Digite Sexo del Paciente (F/M): ", i+1);
+			fflush(stdin);
+			scanf("%c", &pacientes[i].sex);
+									
+			system("cls");
+		}
+		i++;
+		reg_rea++;
+	}while(elec1!=0);
+	reg_rea--;
+	return reg_rea;
+	
+}
+
+void menu_1(int cant_reg)
+{
+	int i;
+	char *param1="carabobo", *param2="san diego";
+	system("color 0a");
+	for(i=0;i<cant_reg;i++)
+	{
+		if((strcmp(param1, pacientes[i].estado)==0)&&(strcmp(param2, pacientes[i].municipio)==0))
+		{
+			printf("Nombre: %s\n", pacientes[i].nombre);
+			printf("Cedula: %ld\n", pacientes[i].cedula);
+			printf("Direccion:\n");
+			printf("Avenida: %s\n", pacientes[i].avenida);
+			printf("Nro: %d\n", pacientes[i].numero);
+			printf("Municipio: %s\n", pacientes[i].municipio);
+			printf("Ciudad: %s\n", pacientes[i].ciudad);
+			printf("Estado: %s\n", pacientes[i].estado);
+			printf("Telefono: %s\n", pacientes[i].telefono);
+			printf("Edad: %d\n", pacientes[i].edad);
+			printf("Sexo: %c\n", pacientes[i].sex);
+			printf("\n\n");	
+		}
+	}
+	
+	
+}
+
+void menu_2(int cant_reg)
+{
+	system("color 0a");
+	int i, cont_paci=0;
+	float porc_paci;
+	char *param1="aragua";
+
+	for(i=0;i<cant_reg;i++)
+	{
+		if(strcmp(param1, pacientes[i].estado)==0)
+		{	
+			cont_paci++;
+		}
+	}
+	porc_paci=(cont_paci*100)/cant_reg;
+	printf("El Porcentaje de Pacientes que Residen en El Estado Aragua es: %.1f", porc_paci);
+	printf("\n\n");	
+}
+
+void menu_3(int cant_reg)
+{
+	system("color 0a");
+	int i;
+	char *param1="naguanagua";
+	
+	for(i=0;i<cant_reg;i++)
+	{
+		if(strcmp(param1, pacientes[i].municipio)==0)
+		{	
+			printf("Nombre: %s\n", pacientes[i].nombre);
+			printf("Telefono: %s", pacientes[i].telefono);
+			printf("\n\n");	
+		}
+	}
+}
+
+void menu_4(int cant_reg)
+{
+system("color 0a");
+int i;
+char *param1="rosa virginia casadiego";
+	
+	for(i=0;i<cant_reg;i++)
+	{
+		if(strcmp(param1, pacientes[i].nombre)==0)
+		{	
+			printf("Direccion:\n");
+			printf("Avenida: %s\n", pacientes[i].avenida);
+			printf("Nro: %d\n", pacientes[i].numero);
+			printf("Municipio: %s\n", pacientes[i].municipio);
+			printf("Ciudad: %s\n", pacientes[i].ciudad);
+			printf("Estado: %s\n", pacientes[i].estado);
+			printf("\n\n");	
+		}
+	}	
+}
+
+void menu_5(int cant_reg)
+{
+	system("color 0a");
+	int i, cont_paci=0;
+	char *param1="carabobo";
+	for(i=0;i<cant_reg;i++)
+	{
+		if((strcmp(param1, pacientes[i].estado)==0)&&(pacientes[i].edad>50))
+		{	
+			cont_paci++;
+		}
+	}
+	printf("La Cantidad de Pacientes Mayores de 50 años que Viven en Carabobo es: %d", cont_paci);
+	printf("\n\n");	
+}
+
+void menu_6(int cant_reg)
+{
+	system("color 0a");
+	int i;
+	
+	for(i=0;i<cant_reg;i++)
+	{
+		if(pacientes[i].sex=='f')
+		{	
+			printf("Nombre: %s\n", pacientes[i].nombre);
+			printf("Direccion:\n");
+			printf("Avenida: %s\n", pacientes[i].avenida);
+			printf("Nro: %d\n", pacientes[i].numero);
+			printf("Municipio: %s\n", pacientes[i].municipio);
+			printf("Ciudad: %s\n", pacientes[i].ciudad);
+			printf("Estado: %s\n", pacientes[i].estado);
+			printf("Telefono: %s\n", pacientes[i].telefono);
+			printf("\n\n");	
+		}
+	}
+}
+
+void menu_7(int cant_reg)
+{
+	system("color 0a");
+	int i, cont_paci=0;
+	float porc_paci;
+	char *param1="valencia";
+	
+	for(i=0;i<cant_reg;i++)
+	{
+		if((strcmp(param1, pacientes[i].ciudad)==0)&&(pacientes[i].sex=='m')&&(pacientes[i].edad>60))
+		{	
+			cont_paci++;
+		}
+	}
+	porc_paci=(cont_paci*100)/cant_reg;
+	printf("El Porcentaje de Pacientes es: %.1f", porc_paci);
+	printf("\n\n");		
+}
+
+
+void menu_8(int cant_reg)
+{
+	int i, pacie_mayor=1, posc;
+	char *param1="bolivar";
+	
+	for(i=0;i<cant_reg;i++)
+	{
+		if((pacientes[i].edad>pacie_mayor) && (strcmp(param1, pacientes[i].avenida)==0))
+		{
+			pacie_mayor = pacientes[i].edad;
+			posc=i;
+		}
+		
+	}
+	printf("%s\n\n", pacientes[posc].nombre);
+}
+
+void menu_9(int cant_reg)
+{
+	system("color 0a");
+	int i;
+	char *param1="maracay";
+	
+	for(i=0;i<cant_reg;i++)
+	{
+		if((strcmp(param1, pacientes[i].ciudad)==0)&&(pacientes[i].sex=='m')&&(pacientes[i].edad<18))
+		{	
+			printf("Nombre: %s\n", pacientes[i].nombre);
+			printf("Telefono: %s", pacientes[i].telefono);
+			printf("\n\n");	
+		}
+	}
+			
+}
+
+void impresion(int cant_reg)
+{
+	int i;
+	for(i=0;i<cant_reg;i++)
+	{
+		printf("Nombre completo: %s\n", pacientes[i].nombre);
+		printf("Cedula: %ld\n", pacientes[i].cedula);
+		printf("Direccion:\n");
+		printf("Avenida: %s\n", pacientes[i].avenida);
+		printf("Numero: %d\n", pacientes[i].numero);
+		printf("Municipio: %s\n", pacientes[i].municipio);
+		printf("Ciudad: %s\n", pacientes[i].ciudad);
+		printf("Estado: %s\n", pacientes[i].ciudad);
+		printf("Telefono: %s\n", pacientes[i].telefono);
+		printf("Edad: %d\n", pacientes[i].edad);
+		printf("Sexo: %c\n\n\n", pacientes[i].sex);
+	}
+}
